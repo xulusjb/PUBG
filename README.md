@@ -12,6 +12,7 @@ Usage
 <p>2. Start main.exe</p>
 <p>3. Get back to the game</p>
 <p>4. Enjoy boting~~~</p>
+<br />
   
 <h1>
 Configuration
