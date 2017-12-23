@@ -9,18 +9,18 @@ gdi32 = windll.gdi32
 user32 = windll.user32
 hdc = user32.GetDC(None)
 
-def getc(hori,vert):
+def getc(hori,vert): #Get color of certain pixel
 	return hex(gdi32.GetPixel(hdc,hori,vert))
 	
 def mclick(hori,vert,times, delay): #Click certain pixel 1 time
 	m.click(hori,vert,times) 
 	time.sleep(delay)
 	
-def mmove(hori,vert,times):
+def mmove(hori,vert,times): #move mouse to certain pixel
 	m.move(hori,vert)
 	time.sleep(times) 
 	
-def mpress(str,times):
+def mpress(str,times): #press one key on keyboard
 	k.press_key(str) 
 	time.sleep(times)
 	k.release_key(str)
