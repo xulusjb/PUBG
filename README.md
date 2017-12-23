@@ -40,3 +40,10 @@ Dependency
 <p>To run the python script, "PyUserInput" is needed to be installed.</p>
 <p>To compile the python script, "pyinstaller" is needed to be installed.</p>
 <br />
+
+<h1>
+Disclaimer
+</h1>
+<p>This sample code aims for programming education purpose only. Please delete the depository within 24hrs of downloading. The authors of the code oppose AFK farming, cheating and other kind of aimbot usage of ANYKIND. The game developing company, Bluehole Inc, reserves all rights to persue improper in-game activities. </p>
+
+<br/>
