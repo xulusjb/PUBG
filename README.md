@@ -8,7 +8,7 @@ Introduction
 Usage
 </h1>
 <p>For security reason. Strongly recommend you to compile the executable file by yourself!</p>
-<p>We assume NO responsibility for any kind for loss caused by using this bot.</p>
+<p>We assume NO responsibility for any kind of loss caused by using this bot.</p>
 <p>If you want to use the bot directly, you may download the release version <a href="https://github.com/xulusjb/PUBG/releases">here</a>.</p>
 <p>1. Set the game as required below</p>
 <p>2. Start main.exe</p>
