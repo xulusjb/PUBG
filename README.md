@@ -5,6 +5,15 @@ Introduction
 <p>You may use it to earn bp or lower your leaderboard rank.</p>
 <br />
 <h1>
+Usage
+</h1>
+<p>If you want to use the bot directly, you may download the release version <a href="https://github.com/xulusjb/PUBG/releases">here</a>.</p>
+<p>1. Set the game as required below</p>
+<p>2. Start main.exe</p>
+<p>3. Get back to the game</p>
+<p>4. Enjoy boting~~~</p>
+  
+<h1>
 Configuration
 </h1>
 <p>Servers: NA:1|EU:2|KRJP:3|AS:4|OC:5|SA:6|SEA:7 </p>
