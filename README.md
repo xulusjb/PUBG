@@ -39,8 +39,8 @@ IMPORTANT!
 <h1>
 Dependency
 </h1>
-<p>To run the python script, "PyUserInput" is needed to be installed.</p>
-<p>To compile the python script, "pyinstaller" is needed to be installed.</p>
+<p>To run the python script, "PyUserInput" is required.</p>
+<p>To compile the python script, "pyinstaller" is required.</p>
 <br />
 
 <h1>
