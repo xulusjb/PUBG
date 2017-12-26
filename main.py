@@ -8,23 +8,21 @@ k = PyKeyboard()
 gdi32 = windll.gdi32
 user32 = windll.user32
 hdc = user32.GetDC(None)
-
-def getc(hori,vert): #Get color of certain pixel
+def getc(hori,vert):
 	return hex(gdi32.GetPixel(hdc,hori,vert))
 	
 def mclick(hori,vert,times, delay): #Click certain pixel 1 time
 	m.click(hori,vert,times) 
 	time.sleep(delay)
 	
-def mmove(hori,vert,times): #move mouse to certain pixel
+def mmove(hori,vert,times):
 	m.move(hori,vert)
 	time.sleep(times) 
 	
-def mpress(str,times): #press one key on keyboard
+def mpress(str,times):
 	k.press_key(str) 
 	time.sleep(times)
 	k.release_key(str)
-
 # getc(100,300)            Get color of certain pixel
 # k.type_string('H')       Press certain key on keyboard
 # k.press_key('H')         Keep pressing a key
@@ -35,10 +33,9 @@ def mpress(str,times): #press one key on keyboard
 confs = ""
 with open('config.json', 'r') as f:
 	confs = f.read()
-print(confs)
 conf = json.loads(confs)
 print(conf)
-print("Script successfully started! Open your game ~~~~~~~~~~~~~~~")
+print("Now script successfully started! Open your game")
 server1 = conf['model1']//10
 server2 = conf['model2']//10
 server3 = conf['model3']//10
@@ -51,7 +48,6 @@ mode3 = conf['model3']%10
 mode4 = conf['model4']%10
 mode5 = conf['model5']%10
 
-
 server = 4
 mode = 3
 s = int(time.time())
@@ -59,9 +55,11 @@ t = s
 ingame = 0
 stayseconds = conf['waittime']
 theround = 0
+lobbytime = 0
 
 time.sleep(5)
 while True:
+	
 	if ((theround % 5) == 0):
 		server = server1
 		mode = mode1
@@ -77,9 +75,29 @@ while True:
 	elif ((theround % 5) == 4):
 		server = server5
 		mode = mode5
+		
+	# ok1
+	if("0xffffff" == getc(954,623) and "0xffffff" == getc(979,615) and "0xffffff" ==getc(980,635)):
+		print("on ok 1")	
+		mmove(954,623,0.5)	
+		mclick(954,623,1,2)
+		time.sleep(5)
+	
+	
 	#in the lobby
-	if ("0xffffff" == getc(1839,1022 ) and "0xffffff" == getc(1843,1036) and "0xffffff" == getc(1834,1036)):
+	if ( "0xcdff"!=getc(285,974)and"0xffffff" == getc(1839,1022 ) and "0xffffff" == getc(1843,1036) and "0xffffff" == getc(1834,1036)):
 		print("in the lobby")
+		nowtime = int(time.time())
+		if ((nowtime - lobbytime) > 50):
+			lobbytime = nowtime
+		else: # repeatly match failed
+			mmove(1837,1029,0.5)
+			mclick(1837,1029,1,2)
+			time.sleep(2)
+			mmove(947,605,0.5)
+			mclick(947,605,1,2)
+			time.sleep(5)
+		
 		time.sleep(2)
 		mmove(1759,1035,0.5)
 		mclick(1759,1035,1,2) # click bottom
@@ -117,13 +135,19 @@ while True:
 			mclick(182,680,1,2)			
 		mmove(158,1009,0.5)
 		mclick(158,1009,1,2) 
-		time.sleep(15)	
-		
+		time.sleep(15)
+			
 	#on the plane
 	if (ingame == 0 ) and ("0xf2f3f2" == getc(960,20) and "0xf2f3f2" == getc(961,21) and "0xf2f3f2" == getc(963,23)):
 		print("on the plane")
 		ingame = 1
 		s = int(time.time())
+		if(stayseconds > 15):
+			time.sleep(15)
+			k.press_key('F')
+			time.sleep(0.2)
+			k.release_key('F') 
+			
 	
 	#on time exit
 	t = int(time.time())
@@ -160,5 +184,13 @@ while True:
 		mclick(834,577,1,2)
 		ingame = 0
 		time.sleep(10)		
+		
+		
+	#reconnect2
+	if("0xffffff" == getc(902,633) and "0xffffff" == getc(910,642) and "0xffffff" ==getc(937,627)):
+		print("on reconnect 2")	
+		mmove(910,642,0.5)	
+		mclick(910,642,1,2)
+		time.sleep(5)
 	
 	theround = theround +1
