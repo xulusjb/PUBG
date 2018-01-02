@@ -59,7 +59,6 @@ lobbytime = 0
 
 time.sleep(5)
 while True:
-	
 	if ((theround % 5) == 0):
 		server = server1
 		mode = mode1
@@ -75,14 +74,13 @@ while True:
 	elif ((theround % 5) == 4):
 		server = server5
 		mode = mode5
-		
-	# ok1
-	if("0xffffff" == getc(954,623) and "0xffffff" == getc(979,615) and "0xffffff" ==getc(980,635)):
-		print("on ok 1")	
-		mmove(954,623,0.5)	
-		mclick(954,623,1,2)
-		time.sleep(5)
 	
+	#reconnect2
+	if("0xffffff" == getc(902,633) and "0xffffff" == getc(910,642) and "0xffffff" ==getc(937,627)):
+		print("on reconnect 2")	
+		mmove(910,642,0.5)	
+		mclick(910,642,1,2)
+		time.sleep(5)
 	
 	#in the lobby
 	if ( "0xcdff"!=getc(285,974)and"0xffffff" == getc(1839,1022 ) and "0xffffff" == getc(1843,1036) and "0xffffff" == getc(1834,1036)):
@@ -136,30 +134,6 @@ while True:
 		mmove(158,1009,0.5)
 		mclick(158,1009,1,2) 
 		time.sleep(15)
-			
-	#on the plane
-	if (ingame == 0 ) and ("0xf2f3f2" == getc(960,20) and "0xf2f3f2" == getc(961,21) and "0xf2f3f2" == getc(963,23)):
-		print("on the plane")
-		ingame = 1
-		s = int(time.time())
-		if(stayseconds > 15):
-			time.sleep(15)
-			k.press_key('F')
-			time.sleep(0.2)
-			k.release_key('F') 
-			
-	
-	#on time exit
-	t = int(time.time())
-	if (ingame == 1) and ((t-s)>stayseconds):
-		print("on time exit")
-		mpress(k.escape_key,0.5)
-		mmove(840,602,0.5)
-		mclick(840,602,1,2)
-		mmove(848,583,0.5)
-		mclick(848,583,1,2)
-		ingame = 0
-		time.sleep(10)
 	#cancel continue
 	if("0xffffff" == getc(816,482) and "0xffffff" == getc(931,501) and "0xffffff" ==getc(932,553)):
 		print("cancel continue")
@@ -173,7 +147,36 @@ while True:
 		mmove(957,608,0.5)	
 		mclick(957,608,1,2)
 
-		time.sleep(5)		
+		time.sleep(5)	
+			
+	#on the plane
+	if (ingame == 0 ) and ("0xf2f3f2" == getc(960,20) and "0xf2f3f2" == getc(961,21) and "0xf2f3f2" == getc(963,23)):
+		print("on the plane")
+		ingame = 1
+		s = int(time.time())
+		if(stayseconds > 25):
+			time.sleep(25)
+			k.press_key('F')
+			time.sleep(0.2)
+			k.release_key('F') 
+			time.sleep(5)
+			k.press_key('F')
+			time.sleep(0.2)
+			k.release_key('F') 			
+			
+	
+	#on time exit
+	t = int(time.time())
+	if (ingame == 1) and ((t-s)>stayseconds):
+		print("on time exit")
+		mpress(k.escape_key,0.5)
+		mmove(840,602,0.5)
+		mclick(840,602,1,2)
+		mmove(848,583,0.5)
+		mclick(848,583,1,2)
+		ingame = 0
+		time.sleep(10)
+	
 	
 	# on death exit
 	if("0xffffff" == getc(1703,960) and "0xffffff" == getc(1648,954) and "0xffffff" ==getc(1671,954)):
@@ -186,11 +189,20 @@ while True:
 		time.sleep(10)		
 		
 		
-	#reconnect2
-	if("0xffffff" == getc(902,633) and "0xffffff" == getc(910,642) and "0xffffff" ==getc(937,627)):
-		print("on reconnect 2")	
-		mmove(910,642,0.5)	
-		mclick(910,642,1,2)
+
+	
+		# ok1
+	if("0xffffff" == getc(954,623) and "0xffffff" == getc(979,615) and "0xffffff" ==getc(980,635)):
+		print("on ok 1")	
+		mmove(954,623,0.5)	
+		mclick(954,623,1,2)
+		time.sleep(5)
+	
+	# ok2
+	if("0xffffff" == getc(954,616) and "0xffffff" == getc(964,634) and "0xffffff" ==getc(979,631)):
+		print("on ok 2")	
+		mmove(954,616,0.5)	
+		mclick(954,616,1,2)
 		time.sleep(5)
 	
 	theround = theround +1
