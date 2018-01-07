@@ -1,13 +1,49 @@
+#!/usr/bin/env python
+
+"""pubgbot.py: Nasty PUBG farm bot."""
+
+__author__      = "fdukeshik, h.takatoshi"
+__copyright__   = "Copyright 2017, team601"
+
 from ctypes import *
 from pymouse import PyMouse
 from pykeyboard import PyKeyboard
 import time
 import json
+import webbrowser
+import psutil
+import win32gui
+
 m = PyMouse()
 k = PyKeyboard()
 gdi32 = windll.gdi32
 user32 = windll.user32
 hdc = user32.GetDC(None)
+
+def opengame():
+	webbrowser.open('steam://rungameid/578080')
+
+def activegamewindow():
+	hwnd = win32gui.FindWindow(None,"PLAYERUNKNOWN'S BATTLEGROUNDS ")
+	if hwnd is not None:
+		win32gui.SetForegroundWindow(hwnd)
+
+def killgame():
+	gamepid = findgame()
+	if gamepid is not None:
+		psutil.Process(gamepid).terminate()
+
+def findgame():
+	for _ in psutil.pids():
+		try:
+			name = psutil.Process(_).name()
+		except psutil.NoSuchProcess:
+			continue
+		if name == "TslGame.exe":
+			return _
+	return None
+	
+
 def getc(hori,vert):
 	return hex(gdi32.GetPixel(hdc,hori,vert))
 	
@@ -23,6 +59,9 @@ def mpress(str,times):
 	k.press_key(str) 
 	time.sleep(times)
 	k.release_key(str)
+
+def color(clr, x, y):
+	return clr == getc(x,y)
 # getc(100,300)            Get color of certain pixel
 # k.type_string('H')       Press certain key on keyboard
 # k.press_key('H')         Keep pressing a key
@@ -30,6 +69,7 @@ def mpress(str,times):
 # m.move(200, 200)     Move mouse to certain pixel
 # m.position()              Get pixel of mouse
 # int(time.time())         Get current timestamp
+
 confs = ""
 with open('config.json', 'r') as f:
 	confs = f.read()
@@ -58,7 +98,9 @@ theround = 0
 lobbytime = 0
 
 time.sleep(5)
+lastgame = time.time()
 while True:
+	
 	if ((theround % 5) == 0):
 		server = server1
 		mode = mode1
@@ -75,15 +117,27 @@ while True:
 		server = server5
 		mode = mode5
 	
-	#reconnect2
-	if("0xffffff" == getc(902,633) and "0xffffff" == getc(910,642) and "0xffffff" ==getc(937,627)):
-		print("on reconnect 2")	
-		mmove(910,642,0.5)	
-		mclick(910,642,1,2)
+	didsomething = False
+
+	if findgame() is None:
+		opengame()
+		print("launch game")
+		lastgame = time.time()
+		didsomething = True
+		time.sleep(25)
+		activegamewindow()
+		
+	# ok1
+	if(color("0xffffff",954,623) and color("0xffffff",979,615) and color("0xffffff",980,635)):
+		print("on ok 1")	
+		mmove(954,623,0.5)	
+		mclick(954,623,1,2)
 		time.sleep(5)
+		didsomething = True
+	
 	
 	#in the lobby
-	if ( "0xcdff"!=getc(285,974)and"0xffffff" == getc(1839,1022 ) and "0xffffff" == getc(1843,1036) and "0xffffff" == getc(1834,1036)):
+	if ( not color("0xcdff",285,974) and color("0xffffff", 1839,1022 ) and color("0xffffff",1843,1036) and color("0xffffff",1834,1036) ):
 		print("in the lobby")
 		nowtime = int(time.time())
 		if ((nowtime - lobbytime) > 50):
@@ -134,27 +188,14 @@ while True:
 		mmove(158,1009,0.5)
 		mclick(158,1009,1,2) 
 		time.sleep(15)
-	#cancel continue
-	if("0xffffff" == getc(816,482) and "0xffffff" == getc(931,501) and "0xffffff" ==getc(932,553)):
-		print("cancel continue")
-		mmove(1024,619,0.5)	
-		mclick(1024,619,1,2)
-		time.sleep(5)
-	
-	# reconnect1
-	if("0xffffff" == getc(902,596) and "0xffffff" == getc(911,602) and "0xffffff" ==getc(917,606)):
-		print("on death exit")	
-		mmove(957,608,0.5)	
-		mclick(957,608,1,2)
-
-		time.sleep(5)	
 			
 	#on the plane
-	if (ingame == 0 ) and ("0xf2f3f2" == getc(960,20) and "0xf2f3f2" == getc(961,21) and "0xf2f3f2" == getc(963,23)):
+	if ( ingame == 0 ) and ( color("0xf2f3f2",960,20) and  color("0xf2f3f2",961,21) and  color("0xf2f3f2",963,23)):
 		print("on the plane")
 		ingame = 1
 		s = int(time.time())
-		if(stayseconds > 25):
+		lastgame = time.time()
+		if(stayseconds > 15):
 			time.sleep(25)
 			k.press_key('F')
 			time.sleep(0.2)
@@ -162,12 +203,14 @@ while True:
 			time.sleep(5)
 			k.press_key('F')
 			time.sleep(0.2)
-			k.release_key('F') 			
+			k.release_key('F')
+			theround = theround +1 
 			
 	
 	#on time exit
 	t = int(time.time())
 	if (ingame == 1) and ((t-s)>stayseconds):
+		didsomething = True
 		print("on time exit")
 		mpress(k.escape_key,0.5)
 		mmove(840,602,0.5)
@@ -176,10 +219,26 @@ while True:
 		mclick(848,583,1,2)
 		ingame = 0
 		time.sleep(10)
+	#cancel continue
+	if( color("0xffffff", 816,482) and color("0xffffff",931,501) and  color("0xffffff",932,553)):
+		didsomething = True
+		print("cancel continue")
+		mmove(1024,619,0.5)	
+		mclick(1024,619,1,2)
+		time.sleep(5)
 	
+	# reconnect1
+	if( color("0xffffff",902,596) and  color("0xffffff",911,602) and  color("0xffffff",917,606)):
+		didsomething = True
+		print("on death exit")	
+		mmove(957,608,0.5)	
+		mclick(957,608,1,2)
+
+		time.sleep(5)		
 	
 	# on death exit
-	if("0xffffff" == getc(1703,960) and "0xffffff" == getc(1648,954) and "0xffffff" ==getc(1671,954)):
+	if( color("0xffffff",1703,960) and  color("0xffffff",1648,954) and  color("0xffffff",1671,954)):
+		didsomething = True
 		print("on death exit")	
 		mmove(1629,942,0.5)	
 		mclick(1629,942,1,2)
@@ -189,20 +248,14 @@ while True:
 		time.sleep(10)		
 		
 		
-
-	
-		# ok1
-	if("0xffffff" == getc(954,623) and "0xffffff" == getc(979,615) and "0xffffff" ==getc(980,635)):
-		print("on ok 1")	
-		mmove(954,623,0.5)	
-		mclick(954,623,1,2)
+	#reconnect2
+	if( color("0xffffff",902,633) and  color("0xffffff",910,642) and  color("0xffffff",937,627)):
+		didsomething = True
+		print("on reconnect 2")	
+		mmove(910,642,0.5)	
+		mclick(910,642,1,2)
 		time.sleep(5)
 	
-	# ok2
-	if("0xffffff" == getc(954,616) and "0xffffff" == getc(964,634) and "0xffffff" ==getc(979,631)):
-		print("on ok 2")	
-		mmove(954,616,0.5)	
-		mclick(954,616,1,2)
-		time.sleep(5)
-	
-	theround = theround +1
+	if time.time() - lastgame > 300 + stayseconds:
+		killgame()
+		print("game killed")
