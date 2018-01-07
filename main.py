@@ -12,6 +12,7 @@ import time
 import json
 import webbrowser
 import psutil
+import win32gui
 
 m = PyMouse()
 k = PyKeyboard()
@@ -22,6 +23,11 @@ hdc = user32.GetDC(None)
 def opengame():
 	webbrowser.open('steam://rungameid/578080')
 
+def activegamewindow():
+	hwnd = win32gui.FindWindow(None,"PLAYERUNKNOWN'S BATTLEGROUNDS ")
+	if hwnd is not None:
+		win32gui.SetForegroundWindow(hwnd)
+
 def killgame():
 	gamepid = findgame()
 	if gamepid is not None:
@@ -29,7 +35,10 @@ def killgame():
 
 def findgame():
 	for _ in psutil.pids():
-		name = psutil.Process(_).name()
+		try:
+			name = psutil.Process(_).name()
+		except psutil.NoSuchProcess:
+			continue
 		if name == "TslGame.exe":
 			return _
 	return None
@@ -87,9 +96,9 @@ ingame = 0
 stayseconds = conf['waittime']
 theround = 0
 lobbytime = 0
-lastgame = 0
 
 time.sleep(5)
+lastgame = time.time()
 while True:
 	
 	if ((theround % 5) == 0):
@@ -113,7 +122,10 @@ while True:
 	if findgame() is None:
 		opengame()
 		print("launch game")
+		lastgame = time.time()
 		didsomething = True
+		time.sleep(25)
+		activegamewindow()
 		
 	# ok1
 	if(color("0xffffff",954,623) and color("0xffffff",979,615) and color("0xffffff",980,635)):
