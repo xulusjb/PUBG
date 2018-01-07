@@ -41,6 +41,9 @@ Dependency
 </h1>
 <p>To run the python script, "PyUserInput" is required.</p>
 <p>To compile the python script, "pyinstaller" is required.</p>
+psutil <br />
+webbrowser <br />
+win32gui <br />
 <br />
 
 <h1>
