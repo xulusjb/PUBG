@@ -39,13 +39,14 @@ IMPORTANT!
 <h1>
 Dependency
 </h1>
-<p>To run the python script, "PyUserInput" is required.</p>
-<p>To compile the python script, "pyinstaller" is required.</p>
+<p>To run the python script, the following dependencies are required:</p>
+PyUserInput<br />
 psutil <br />
 webbrowser <br />
 win32gui <br />
 win32con <br />
 <br />
+<p>To compile the python script, "pyinstaller" is required.</p>
 
 <h1>
 Disclaimer
