@@ -44,6 +44,7 @@ Dependency
 psutil <br />
 webbrowser <br />
 win32gui <br />
+win32con <br />
 <br />
 
 <h1>
