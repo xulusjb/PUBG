@@ -13,6 +13,7 @@ import json
 import webbrowser
 import psutil
 import win32gui
+import win32con
 
 m = PyMouse()
 k = PyKeyboard()
@@ -31,7 +32,10 @@ def activegamewindow():
 def killgame():
 	gamepid = findgame()
 	if gamepid is not None:
-		psutil.Process(gamepid).terminate()
+		try:
+			psutil.Process(gamepid).terminate()
+		except psutil.NoSuchProcess:
+			pass
 
 def findgame():
 	for _ in psutil.pids():
@@ -42,6 +46,20 @@ def findgame():
 		if name == "TslGame.exe":
 			return _
 	return None
+
+def windowEnumerationHandler(hwnd, top_windows):
+    top_windows.append((hwnd, win32gui.GetWindowText(hwnd)))
+
+# BATTLEGROUNDS Crash Reporter
+def crashwindow():
+	top_windows = []
+	win32gui.EnumWindows(windowEnumerationHandler, top_windows)
+	for i in top_windows:
+		if "BATTLEGROUNDS Crash Reporter" in i[1]:
+			win32gui.PostMessage(i[0],win32con.WM_CLOSE,0,0)
+			return True
+	return False
+
 	
 
 def getc(hori,vert):
@@ -119,6 +137,14 @@ while True:
 	
 	didsomething = False
 
+	if crashwindow():
+		print("game crashed")
+		opengame()
+		lastgame = time.time()
+		didsomething = True
+		time.sleep(25)
+		activegamewindow()
+
 	if findgame() is None:
 		opengame()
 		print("launch game")
@@ -126,6 +152,8 @@ while True:
 		didsomething = True
 		time.sleep(25)
 		activegamewindow()
+
+	
 		
 	# ok1
 	if(color("0xffffff",954,623) and color("0xffffff",979,615) and color("0xffffff",980,635)):
