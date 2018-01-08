@@ -14,6 +14,7 @@ import webbrowser
 import psutil
 import win32gui
 import win32con
+import win32process
 
 m = PyMouse()
 k = PyKeyboard()
@@ -21,13 +22,22 @@ gdi32 = windll.gdi32
 user32 = windll.user32
 hdc = user32.GetDC(None)
 
+def enum_window_callback(hwnd, pid):
+    tid, current_pid = win32process.GetWindowThreadProcessId(hwnd)
+    if pid == current_pid and win32gui.IsWindowVisible(hwnd):
+        win32gui.SetForegroundWindow(hwnd)
+        print("window activated")
+
 def opengame():
 	webbrowser.open('steam://rungameid/578080')
 
 def activegamewindow():
-	hwnd = win32gui.FindWindow(None,"PLAYERUNKNOWN'S BATTLEGROUNDS ")
-	if hwnd is not None:
-		win32gui.SetForegroundWindow(hwnd)
+
+	gamepid = findgame()
+	if gamepid is not None:
+		win32gui.EnumWindows(enum_window_callback, gamepid)
+	
+		
 
 def killgame():
 	gamepid = findgame()
