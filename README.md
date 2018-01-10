@@ -4,16 +4,16 @@ Introduction
 <p>It is the python script for bot / farming in PUBG PC 1.0.</p>
 <p>You may use it to earn bp or lower your leaderboard rank.</p>
 <br />
-<h1>
-Usage
-</h1>
-<p>For security reason, strongly recommend you to compile the executable file by yourself!</p>
-<p>We assume NO responsibility for any kind of loss caused by using this bot.</p>
-<p>If you want to use the bot directly, you may download the release version <a href="https://github.com/xulusjb/PUBG/releases">here</a>.</p>
-<p>1. Set the game as required below</p>
-<p>2. Start main.exe</p>
-<p>3. Get back to the game</p>
-<p>4. Enjoy boting~~~</p>
+
+# usage
+
+For security reason, strongly recommend you to compile the executable file by yourself!</br>
+We assume NO responsibility for any kind of loss caused by using this bot.</br>
+If you want to use the bot directly, you may download the release version [here](https://github.com/xulusjb/PUBG/releases)
+1. Set the game as required below
+1. Start main.exe
+1. Get back to the game
+1. Enjoy boting~~~
 <br />
   
 <h1>
@@ -36,15 +36,16 @@ IMPORTANT!
 1. Must set language as 'English' and resolution as 'Fullscreen(Windowed)' and '1920*1080'!!!.<br />
 2. You may set the mode and server you want to farm in the 'config.json'.<br />
 <br />
-<h1>
-Dependency
-</h1>
-<p>To run the python script, the following dependencies are required:</p>
-PyUserInput<br />
-psutil <br />
-webbrowser <br />
-win32gui <br />
-win32con <br />
+
+# Dependency
+
+To run the python script, the following dependencies are required:
+* PyUserInput
+* psutil 
+* webbrowser 
+* win32gui 
+* win32con 
+* win32process
 <br />
 <p>To compile the python script, "pyinstaller" is required.</p>
 
