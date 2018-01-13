@@ -1,9 +1,8 @@
-<h1>
-Introduction
-</h1>
-<p>It is the python script for bot / farming in PUBG PC 1.0.</p>
-<p>You may use it to earn bp or lower your leaderboard rank.</p>
+# Introduction
+It is the python script for bot / farming in PUBG PC 1.0. <br />
+You may use it to earn bp or lower your leaderboard rank. <br />
 <br />
+[![Support via PayPal](https://cdn.rawgit.com/twolfson/paypal-github-button/1.0.0/dist/button.svg)](https://www.paypal.me/htakatoshi/)
 
 # usage
 
