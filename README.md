@@ -21,7 +21,7 @@ Configuration
 <p>Servers: NA:1|EU:2|KRJP:3|AS:4|OC:5|SA:6|SEA:7 </p>
 <p>Modes: SOLO:1|DUO:2|SQUAD:3 </p>
 <p>Example: If you want to farm for NA-Solo, set config.json as "11",  if you want to bot for AS-DUO, set as "42". </p>
-<p>If you want to farm for BP, set waittime as "240". If you only want to lower your rank, set waittime as "0".</p>
+<p>If you want to farm for BP, set waittime as "220". If you only want to lower your rank, set waittime as "0".</p>
 <p>Attention: Must set and only set 5 models. The probability to choose one certain model is same for the five models.</p>
 <br />
 <h1>
