@@ -17,9 +17,9 @@ This bot currently only works for 1920*1080 screen. For other resolution, you ne
 1. Enjoy boting~~~
 <br />
   
-<h1>
-Configuration
-</h1>
+
+# Configuration
+
 <p>Servers: NA:1|EU:2|KRJP:3|AS:4|OC:5|SA:6|SEA:7 </p>
 <p>Modes: SOLO:1|DUO:2|SQUAD:3 </p>
 <p>Example: If you want to farm for NA-Solo, set config.json as "11",  if you want to bot for AS-DUO, set as "42". </p>
@@ -47,12 +47,14 @@ To run the python script, the following dependencies are required:
 * win32gui 
 * win32con 
 * win32process
-<br />
-<p>To compile the python script, "pyinstaller" is required.</p>
 
-<h1>
-Disclaimer
-</h1>
+To compile the python script, "pyinstaller" is required.
+
+For many of these packages it's hard to get it on windows. First try to search if there's an official guidance. Many of these packages can be downloaded from [here](https://www.lfd.uci.edu/~gohlke/pythonlibs). Many occasions still you have to build directly from source, take [this thread](https://github.com/xulusjb/PUBG/issues/5#issuecomment-369245480) for proper reference.
+
+
+# Disclaimer
+
 <p>This sample code aims for programming education purpose only. Please delete the depository within 24hrs of downloading. The authors of the code oppose AFK farming, cheating and other kind of aimbot usage of ANYKIND. The game developing company, Bluehole Inc, reserves all rights to persue improper in-game activities. </p>
 
 <br/>
