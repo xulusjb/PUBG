@@ -15,6 +15,7 @@ import psutil
 import win32gui
 import win32con
 import win32process
+import pywintypes
 
 m = PyMouse()
 k = PyKeyboard()
@@ -23,10 +24,18 @@ user32 = windll.user32
 hdc = user32.GetDC(None)
 
 def enum_window_callback(hwnd, pid):
-    tid, current_pid = win32process.GetWindowThreadProcessId(hwnd)
-    if pid == current_pid and win32gui.IsWindowVisible(hwnd):
-        win32gui.SetForegroundWindow(hwnd)
-        print("window activated")
+	tid, current_pid = win32process.GetWindowThreadProcessId(hwnd)
+	if pid == current_pid and win32gui.IsWindowVisible(hwnd):
+		jobdone = False
+		while not jobdone:
+			try:
+				jobdone = True
+				win32gui.SetForegroundWindow(hwnd)
+			except pywintypes.error:
+				jobdone = False
+
+		
+		print("window activated")
 
 def opengame():
 	webbrowser.open('steam://rungameid/578080')
