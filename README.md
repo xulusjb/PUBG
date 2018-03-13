@@ -1,4 +1,5 @@
 # Introduction
+⚠⚠⚠ Current version not working after 0313 update. Working on it. ⚠⚠⚠
 It is the python script for bot / farming in PUBG PC 1.0. <br />
 You may use it to earn bp or lower your leaderboard rank. <br />
 <br />
