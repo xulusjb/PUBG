@@ -14,7 +14,7 @@ You may use it to earn bp or lower your leaderboard rank. <br />
 For security reason, strongly recommend you to compile the executable file by yourself!</br>
 We assume NO responsibility for any kind of loss caused by using this bot.</br>
 If you want to use the bot directly, you may download the release version [here](https://github.com/xulusjb/PUBG/releases)</br>
-This bot currently only works for 1920*1080 screen. For other resolution, you need to adjust parameters by yourself.
+This bot currently only works for ⚠⚠⚠**1920*1080, full screen(windowed), display language English**⚠⚠⚠. For other resolution, you need to adjust parameters by yourself.
 1. Set the game as required below
 1. Start main.exe
 1. Get back to the game
