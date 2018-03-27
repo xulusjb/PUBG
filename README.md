@@ -1,5 +1,5 @@
 # Introduction
-⚠⚠⚠ Dear Users, please [download the latest 0313 version](https://github.com/xulusjb/PUBG/releases/download/1.3/pubg0313.zip) after the 9Gb update(which added emotes).⚠⚠⚠<br />
+⚠⚠⚠ Dear Users, after the 1.9Gb update(which added weapon skins) with region lock the server selecting click positions have changed. We will release a fixed version later. Thank you for your understanding.⚠⚠⚠<br />
 It is the python script for bot / farming in PUBG PC 1.0. <br />
 You may use it to earn bp or lower your leaderboard rank. <br />
 [Our suggestion for farming efficiency](https://github.com/xulusjb/PUBG/wiki/Farming-efficiency)
