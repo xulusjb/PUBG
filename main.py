@@ -192,28 +192,28 @@ while True:
 		mmove(1759,1035,0.5)
 		mclick(1759,1035,1,2) # click bottom
 		if (server == 1): #NA server
-			mmove(845,422,0.5)
-			mclick(845,422,1,2)
+			mmove(815,448,0.5)
+			mclick(815,448,1,2)
 		elif (server == 2):#EU server
-			mmove(847,462 ,0.5)
-			mclick(847,462 ,1,2) 
-		elif (server == 3):#KR/JP server
+			mmove(847,496 ,0.5)
+			mclick(847,496 ,1,2) 
+		elif (server == 3):#KR/JP server -- unavailable
 			mmove(847,505 ,0.5)
 			mclick(847,505,1,2) 
 		elif (server == 4):#asia server
-			mmove(853,567,0.5)
-			mclick(853,567,1,2) 
+			mmove(853,536,0.5)
+			mclick(853,536,1,2) 
 		elif (server == 5):#OC server
-			mmove(844,597,0.5)
-			mclick(844,597,1,2) 
+			mmove(844,584,0.5)
+			mclick(844,584,1,2) 
 		elif (server == 6):#SA server
-			mmove(847,645,0.5)
-			mclick(847,645,1,2) 
+			mmove(847,622,0.5)
+			mclick(847,622,1,2) 
 		elif( server == 7):#SEA server
-			mmove(842,692,0.5)
-			mclick(842,692,1,2) 
+			mmove(842,671,0.5)
+			mclick(842,671,1,2) 
 		
-		mclick(957,758,1,2) #esc
+		mclick(935,736,1,2) #esc
 		if (mode == 3):#squad
 			mmove(155,790,0.5)
 			mclick(155,790,1,2)
