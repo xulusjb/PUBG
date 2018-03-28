@@ -1,6 +1,6 @@
 # Introduction
-⚠⚠⚠ Dear Users, after the 1.9Gb update(which added weapon skins) with region lock the server selecting click positions have changed. We will release a fixed version later. Thank you for your understanding.⚠⚠⚠<br />
-It is the python script for bot / farming in PUBG PC 1.0. <br />
+⚠⚠⚠ Dear Users, please [download the latest 0328 version](https://github.com/xulusjb/PUBG/releases/download/1.4/pubg0328.zip) after the kr/jp server lock. For kr/jp server players we will release another version.⚠⚠⚠<br />
+It is the python script for bot / farming in PUBG. <br />
 You may use it to earn bp or lower your leaderboard rank. <br />
 [Our suggestion for farming efficiency](https://github.com/xulusjb/PUBG/wiki/Farming-efficiency)
 <br />
