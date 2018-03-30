@@ -1,5 +1,5 @@
 # Introduction
-⚠⚠⚠ Dear Users, please [download the latest 0328 version](https://github.com/xulusjb/PUBG/releases/download/1.4/pubg0328.zip) after the kr/jp server lock. For kr/jp server players we will release another version.⚠⚠⚠<br />
+⚠⚠⚠ Do not use the bot these days!!!! Highly possible to be banned!!!!⚠⚠⚠<br />
 It is the python script for bot / farming in PUBG. <br />
 You may use it to earn bp or lower your leaderboard rank. <br />
 [Our suggestion for farming efficiency](https://github.com/xulusjb/PUBG/wiki/Farming-efficiency)
