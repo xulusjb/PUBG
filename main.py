@@ -15,6 +15,8 @@ import psutil
 import win32gui
 import win32con
 import win32process
+import random
+from threading import Timer
 
 m = PyMouse()
 k = PyKeyboard()
@@ -22,6 +24,7 @@ gdi32 = windll.gdi32
 user32 = windll.user32
 hdc = user32.GetDC(None)
 
+# Process related helper functions
 def enum_window_callback(hwnd, pid):
     tid, current_pid = win32process.GetWindowThreadProcessId(hwnd)
     if pid == current_pid and win32gui.IsWindowVisible(hwnd):
@@ -70,8 +73,19 @@ def crashwindow():
 			return True
 	return False
 
-	
 
+# Global Timer helper functions
+def setTimer(execTime, execFunc):
+	global nowTimer
+	nowTimer = Timer(execTime, execFunc)
+	nowTimer.start()
+
+def clearTimer():
+	global nowTimer
+	nowTimer.cancel()
+	nowTimer = None
+
+# pyinput helper functions
 def getc(hori,vert):
 	return hex(gdi32.GetPixel(hdc,hori,vert))
 	
@@ -90,6 +104,15 @@ def mpress(str,times):
 
 def color(clr, x, y):
 	return clr == getc(x,y)
+
+def move_mouse(x,y):
+    windll.user32.mouse_event(
+        c_uint(0x0001),
+        c_uint(x),
+        c_uint(y),
+        c_uint(0),
+        c_uint(0)
+    )
 # getc(100,300)            Get color of certain pixel
 # k.type_string('H')       Press certain key on keyboard
 # k.press_key('H')         Keep pressing a key
@@ -97,6 +120,7 @@ def color(clr, x, y):
 # m.move(200, 200)     Move mouse to certain pixel
 # m.position()              Get pixel of mouse
 # int(time.time())         Get current timestamp
+# move_mouse(x,y)			move mouse in game
 
 confs = ""
 with open('config.json', 'r') as f:
@@ -124,6 +148,8 @@ ingame = 0
 stayseconds = conf['waittime']
 theround = 0
 lobbytime = 0
+nowstate = None
+nextstate = None
 
 time.sleep(5)
 lastgame = time.time()
@@ -234,29 +260,59 @@ while True:
 		s = int(time.time())
 		lastgame = time.time()
 		if(stayseconds > 15):
-			time.sleep(15)
+			mmove(960,1080,0.1)
+			time.sleep(8 + random.random() * 3)  # adjusted this value to keep distance from the map centre
 			k.press_key('F')
 			time.sleep(0.2)
 			k.release_key('F') 
-			time.sleep(5)
+			time.sleep(1)  # double press F key to make sure player jumps
 			k.press_key('F')
 			time.sleep(0.2)
 			k.release_key('F')
+			timestamp = time.time()
+			while time.time() - timestamp < 3:
+				time.sleep(0.01)
+				move_mouse(0,30)
+			k.press_key('W')
+			time.sleep(40)
+			k.release_key('W')
+			time.sleep(5)
+			k.press_key('=')
+			time.sleep(0.1)
+			k.release_key('=')
+			nowstate = 0
+			nextstate = 0
 			theround = theround +1 
 			
 	
-	#on time exit
+	
 	t = int(time.time())
-	if (ingame == 1) and ((t-s)>stayseconds):
-		didsomething = True
-		print("on time exit")
-		mpress(k.escape_key,0.5)
-		mmove(840,602,0.5)
-		mclick(840,602,1,2)
-		mmove(848,583,0.5)
-		mclick(848,583,1,2)
-		ingame = 0
-		time.sleep(10)
+	if (ingame == 1):
+		#on time exit
+		if ((t-s)>stayseconds):
+			didsomething = True
+			print("on time exit")
+			mpress(k.escape_key,0.5)
+			mmove(840,602,0.5)
+			mclick(840,602,1,2)
+			mmove(848,583,0.5)
+			mclick(848,583,1,2)
+			ingame = 0
+			nowstate = None
+			nextstate = None
+			time.sleep(10)
+		else:
+			if random.random() < 0.2:
+				mpress(' ', 0.05)
+			timestamp = time.time()
+			direction = random.choice([30,-30])
+			while time.time() - timestamp < 0.4:
+				move_mouse(direction,0)
+				time.sleep(0.01)
+			time.sleep(1)
+
+
+
 	#cancel continue
 	if( color("0xffffff", 816,482) and color("0xffffff",931,501) and  color("0xffffff",932,553)):
 		didsomething = True
