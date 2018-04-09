@@ -15,6 +15,7 @@ import psutil
 import win32gui
 import win32con
 import win32process
+import random
 from threading import Timer
 
 m = PyMouse()
@@ -147,6 +148,8 @@ ingame = 0
 stayseconds = conf['waittime']
 theround = 0
 lobbytime = 0
+nowstate = None
+nextstate = None
 
 time.sleep(5)
 lastgame = time.time()
@@ -258,7 +261,7 @@ while True:
 		lastgame = time.time()
 		if(stayseconds > 15):
 			mmove(960,1080,0.1)
-			time.sleep(10)  # adjusted this value to keep distance from the map centre
+			time.sleep(8 + random.random() * 3)  # adjusted this value to keep distance from the map centre
 			k.press_key('F')
 			time.sleep(0.2)
 			k.release_key('F') 
@@ -267,26 +270,49 @@ while True:
 			time.sleep(0.2)
 			k.release_key('F')
 			timestamp = time.time()
-			while time.time() - timestamp < 1.5:
-				move_mouse(0,1)
+			while time.time() - timestamp < 3:
+				time.sleep(0.01)
+				move_mouse(0,30)
 			k.press_key('W')
 			time.sleep(40)
 			k.release_key('W')
+			time.sleep(5)
+			k.press_key('=')
+			time.sleep(0.1)
+			k.release_key('=')
+			nowstate = 0
+			nextstate = 0
 			theround = theround +1 
 			
 	
-	#on time exit
+	
 	t = int(time.time())
-	if (ingame == 1) and ((t-s)>stayseconds):
-		didsomething = True
-		print("on time exit")
-		mpress(k.escape_key,0.5)
-		mmove(840,602,0.5)
-		mclick(840,602,1,2)
-		mmove(848,583,0.5)
-		mclick(848,583,1,2)
-		ingame = 0
-		time.sleep(10)
+	if (ingame == 1):
+		#on time exit
+		if ((t-s)>stayseconds):
+			didsomething = True
+			print("on time exit")
+			mpress(k.escape_key,0.5)
+			mmove(840,602,0.5)
+			mclick(840,602,1,2)
+			mmove(848,583,0.5)
+			mclick(848,583,1,2)
+			ingame = 0
+			nowstate = None
+			nextstate = None
+			time.sleep(10)
+		else:
+			if random.random() < 0.2:
+				mpress(' ', 0.05)
+			timestamp = time.time()
+			direction = random.choice([30,-30])
+			while time.time() - timestamp < 0.4:
+				move_mouse(direction,0)
+				time.sleep(0.01)
+			time.sleep(1)
+
+
+
 	#cancel continue
 	if( color("0xffffff", 816,482) and color("0xffffff",931,501) and  color("0xffffff",932,553)):
 		didsomething = True
