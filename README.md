@@ -1,5 +1,6 @@
 # Introduction
-⚠⚠⚠ Do not use the bot these days!!!! Highly possible to be banned!!!!⚠⚠⚠<br />
+⚠⚠⚠ Many of our users got a 100-year ban in a recent bot hunt-out(though they've unbanned now). Please seriously consider the risks before using this tool. ⚠⚠⚠<br />
+⚠⚠⚠ [Update 0409](https://github.com/xulusjb/PUBG/releases/download/1.5/pubg0409.zip): added random jump-off time, random walking and jumping after landing, and quick parachuting. ⚠⚠⚠<br />
 It is the python script for bot / farming in PUBG. <br />
 You may use it to earn bp or lower your leaderboard rank. <br />
 [Our suggestion for farming efficiency](https://github.com/xulusjb/PUBG/wiki/Farming-efficiency)
