@@ -1,7 +1,11 @@
 # Introduction
 ⚠⚠⚠ Many of our users got a 100-year ban in a recent bot hunt-out(though they've been unbanned now). Please seriously consider the risks before using this tool. ⚠⚠⚠<br />
-[Update 0410](https://github.com/xulusjb/PUBG/releases/download/1.5.1/pubg0410.zip): you can use it directly without config file. will do default server squad bp earning. <br />
-0409: added random drop time, random walking and jumping after landing, and quick parachuting. ⚠⚠⚠<br />
+[Download Update 0410](https://github.com/xulusjb/PUBG/releases/download/1.5.1/0410.exe) <br />
+```
+Changelog
+0410: you can use it directly without config file. Will do default server, one-man squad bp earning. 
+0409: added random drop time, random walking and jumping after landing, and quick parachuting. 
+```
 It is the python script for bot / farming in PUBG. <br />
 You may use it to earn bp or lower your leaderboard rank. <br />
 [Our suggestion for farming efficiency](https://github.com/xulusjb/PUBG/wiki/Farming-efficiency)
