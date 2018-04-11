@@ -41,7 +41,9 @@ def initLogger():
 
 # Process related helper functions
 def activeWindowName():
-	return win32gui.GetWindowText(win32gui.GetForegroundWindow())
+	hwnd = win32gui.GetForegroundWindow()
+	tid, current_pid = win32process.GetWindowThreadProcessId(hwnd)
+	return psutil.Process(current_pid).name()
 
 def enum_window_callback(hwnd, pid):
     tid, current_pid = win32process.GetWindowThreadProcessId(hwnd)
@@ -212,7 +214,7 @@ while True:
 	# else, do nothing when game is there but not activated
 
 	wName = activeWindowName()
-	gName = "PLAYERUNKNOWN'S BATTLEGROUNDS"
+	gName = "TslGame.exe"
 	if not gName in wName:
 		lastgame = time.time()
 		if windowActive:
