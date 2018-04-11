@@ -1,6 +1,6 @@
 # Introduction
 ⚠⚠⚠ Many of our users got a 100-year ban in a recent bot hunt-out(though they've been unbanned now). Please seriously consider the risks before using this tool. ⚠⚠⚠<br />
-[Download Update 0410](https://github.com/xulusjb/PUBG/releases/download/1.5.1/0410.exe) <br />
+[Download Update 0410](https://github.com/xulusjb/PUBG/releases/download/1.5.1/0411.exe) <br />
 ```
 Changelog
 0410: you can use it directly without config file. Will do default server, one-man squad bp earning. 
