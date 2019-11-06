@@ -1,4 +1,5 @@
 # Introduction
+This repo is outdated and will not be updated. </br></br>
 An autoclick script that used to make advantage of the old BP giving strategy.  You may find this project helpful if you are developing autoclick scripts. </br>
 Planning: move the player to sheds and pick up items.
 ```
